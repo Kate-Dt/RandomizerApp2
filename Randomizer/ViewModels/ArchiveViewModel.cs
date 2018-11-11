@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
-using Randomizer.Managers;
+﻿using Randomizer.Managers;
 using Randomizer.Models;
 using Randomizer.Tools;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Randomizer.ViewModels
 {

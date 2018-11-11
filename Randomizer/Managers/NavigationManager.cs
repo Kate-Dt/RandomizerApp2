@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using Randomizer.Tools;
+﻿using Randomizer.Tools;
 
 namespace Randomizer.Managers
 {

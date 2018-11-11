@@ -1,15 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using Randomizer.Managers;
+using Randomizer.Models;
+using Randomizer.Tools;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Randomizer.Managers;
-using Randomizer.Models;
-using Randomizer.Properties;
-using Randomizer.Tools;
 
 namespace Randomizer.ViewModels
 {
@@ -43,7 +40,7 @@ namespace Randomizer.ViewModels
         {
             get
             {
-                return _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute));
+                return _signUpCommand ?? (_signUpCommand = new RelayCommand<object>(SignUpExecute, SignUpCanExecute));
             }
         }
         public ICommand SignInCommand
@@ -153,6 +150,15 @@ namespace Randomizer.ViewModels
             LoaderManager.Instance.HideLoader();
             if (result)
                 NavigationManager.Instance.Navigate(ModesEnum.Randomizer);
+        }
+
+        private bool SignUpCanExecute(object obj)
+        {
+            return !String.IsNullOrEmpty(_login) &&
+                   !String.IsNullOrEmpty(_password) &&
+                   !String.IsNullOrEmpty(_firstName) &&
+                   !String.IsNullOrEmpty(_lastName) &&
+                   !String.IsNullOrEmpty(_email);
         }
 
         private void SignInExecute(object obj)

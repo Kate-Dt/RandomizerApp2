@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Randomizer.Models;
+﻿using Randomizer.Models;
 using Randomizer.Tools;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Randomizer.Managers
 {

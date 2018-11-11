@@ -2,10 +2,9 @@
 using Randomizer.Models;
 using Randomizer.Tools;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace Randomizer.ViewModels
 {

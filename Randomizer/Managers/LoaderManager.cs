@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using Randomizer.Tools;
+﻿using Randomizer.Tools;
+using System.Windows;
 
 namespace Randomizer.Managers
 {

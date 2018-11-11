@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows.Controls;
-using JetBrains.Annotations;
 
 namespace Randomizer.ViewModels
 {
-    class BaseViewModel : Page, INotifyPropertyChanged
+    public class BaseViewModel : Page, INotifyPropertyChanged
     {
         sealed class CallerMemberNameAttribute : Attribute { }
 

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using Randomizer.Views;
-using Randomizer.Managers;
+﻿using Randomizer.Views;
+using System;
 
 namespace Randomizer.Tools
 {

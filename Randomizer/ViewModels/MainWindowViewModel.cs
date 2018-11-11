@@ -1,15 +1,10 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using JetBrains.Annotations;
-using Randomizer.Managers;
-using Randomizer.Properties;
+﻿using Randomizer.Managers;
 using Randomizer.Tools;
-using Randomizer.ViewModels;
+using System.Windows;
 
 namespace Randomizer.ViewModels
 {
-    public class MainWindowViewModel : ILoaderOwner
+    public class MainWindowViewModel : BaseViewModel, ILoaderOwner
     {
         private Visibility _visibility = Visibility.Hidden;
         private bool _isEnabled = true;
@@ -44,12 +39,5 @@ namespace Randomizer.ViewModels
             NavigationManager.Instance.Navigate(StationManager.CurrentUser != null ? ModesEnum.Randomizer : ModesEnum.SignIn);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

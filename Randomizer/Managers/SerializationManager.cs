@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Randomizer.Tools;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Randomizer.Tools;
 
 namespace Randomizer.Managers
 {

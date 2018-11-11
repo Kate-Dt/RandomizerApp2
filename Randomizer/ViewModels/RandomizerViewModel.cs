@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Randomizer.Managers;
+using Randomizer.Tools;
+using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using JetBrains.Annotations;
-using Randomizer.Managers;
-using Randomizer.Tools;
 
 namespace Randomizer.ViewModels
 {
@@ -98,44 +93,52 @@ namespace Randomizer.ViewModels
 
         //TODO separate thread and add to database
 
-        private void GenerateSequenceExecute(object obj)
+        private async void GenerateSequenceExecute(object obj)
         {
-            int from = 0;
-            int to = 0;
-            if (Int32.TryParse(_fromNumber, out from) && Int32.TryParse(_toNumber, out to))
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
             {
-                //TODO add method to swap values
-                if (from > to)
+                int from = 0;
+                int to = 0;
+                if (Int32.TryParse(_fromNumber, out from) && Int32.TryParse(_toNumber, out to))
                 {
-                    MessageBox.Show("From (number) should be less than To (number)");
+                    //TODO add method to swap values
+                    if (from > to)
+                    {
+                        MessageBox.Show("From (number) should be less than To (number)");
+                        //return false;
+                    }
+                    else
+                    {
+                        _result = "";
+                        int randomNumber;
+                        int totalQuantity = to - from + 1;
+                        _randomSequenceCollection = new ObservableCollection<int>();
+                        Random random = new Random();
+                        while (totalQuantity > 0)
+                        {
+                            randomNumber = random.Next(from, to + 1);
+                            if (!_randomSequenceCollection.Contains(randomNumber))
+                            {
+                                _randomSequenceCollection.Add(randomNumber);
+                                totalQuantity--;
+                            }
+                        }
+                        foreach (int i in _randomSequenceCollection)
+                        {
+                            _result += " " + i + "\n";
+                        }
+                        OnPropertyChanged("Result");
+                       // return true;
+                    }
                 }
                 else
                 {
-                    _result = "";
-                    int randomNumber;
-                    int totalQuantity = to - from + 1;
-                    _randomSequenceCollection = new ObservableCollection<int>();
-                    Random random = new Random();
-                    while (totalQuantity > 0)
-                    {
-                        randomNumber = random.Next(from, to + 1);
-                        if (!_randomSequenceCollection.Contains(randomNumber))
-                        {
-                            _randomSequenceCollection.Add(randomNumber);
-                            totalQuantity--;
-                        }
-                    }
-                    foreach (int i in _randomSequenceCollection)
-                    {
-                        _result += " " + i + "\n";
-                    }
-                    OnPropertyChanged("Result");
+                    MessageBox.Show("Error parsing");
+                   // return false;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Error parsing");
-            }
+            });
+            LoaderManager.Instance.HideLoader();
         }
 
         //TODO 

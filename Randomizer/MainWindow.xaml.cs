@@ -1,8 +1,7 @@
-﻿using System.Windows.Controls;
-using System.Windows.Navigation;
-using Randomizer.ViewModels;
+﻿using Randomizer.Managers;
 using Randomizer.Tools;
-using Randomizer.Managers;
+using Randomizer.ViewModels;
+using System.Windows.Controls;
 
 namespace Randomizer
 {
