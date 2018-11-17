@@ -1,4 +1,6 @@
-﻿using Randomizer.Managers;
+﻿using Randomizer.DBAdapter;
+using Randomizer.Managers;
+using Randomizer.Models;
 using Randomizer.Tools;
 using System;
 using System.Collections.ObjectModel;
@@ -20,6 +22,8 @@ namespace Randomizer.ViewModels
         #region Commands
         private ICommand _generateSequenceCommand;
         private ICommand _pastQueriesCommand;
+        private ICommand _logOutCommand;
+        private ICommand _closeCommand;
 
         #endregion
         #endregion
@@ -85,14 +89,27 @@ namespace Randomizer.ViewModels
                 return _pastQueriesCommand ?? (_pastQueriesCommand = new RelayCommand<object>(PastQueriesExecute));
             }
         }
+        public ICommand LogOutCommand
+        {
+            get
+            {
+                return _logOutCommand ?? (_logOutCommand = new RelayCommand<object>(LogOutExecute));
+            }
+        }
+        public ICommand CloseCommand
+        {
+            get
+            {
+                return _closeCommand ?? (_closeCommand = new RelayCommand<object>(CloseExecute));
+            }
+        }
+
 
         public RandomizerViewModel()
         {
             _result = "";
         }
-
-        //TODO separate thread and add to database
-
+        
         private async void GenerateSequenceExecute(object obj)
         {
             LoaderManager.Instance.ShowLoader();
@@ -102,11 +119,9 @@ namespace Randomizer.ViewModels
                 int to = 0;
                 if (Int32.TryParse(_fromNumber, out from) && Int32.TryParse(_toNumber, out to))
                 {
-                    //TODO add method to swap values
                     if (from > to)
                     {
                         MessageBox.Show("From (number) should be less than To (number)");
-                        //return false;
                     }
                     else
                     {
@@ -129,25 +144,48 @@ namespace Randomizer.ViewModels
                             _result += " " + i + "\n";
                         }
                         OnPropertyChanged("Result");
-                       // return true;
+                        Query currentQuery = new Models.Query(from, to, StationManager.CurrentUser);
+                        //add to db
+                        EntityWrapper.AddQuery(currentQuery);
                     }
                 }
                 else
                 {
                     MessageBox.Show("Error parsing");
-                   // return false;
                 }
             });
             LoaderManager.Instance.HideLoader();
         }
 
-        //TODO 
-        private bool GenerateSequenceCanExecute(object obj)
+        private async void LogOutExecute(object obj)
         {
-            return true;
-            //return !String.IsNullOrWhiteSpace(_fromNumber) && !String.IsNullOrWhiteSpace(_toNumber);
+            LoaderManager.Instance.ShowLoader();
+            var result = await Task.Run(() =>
+            {
+                try
+                {
+                    DBManager.SerializeCurrent(StationManager.CurrentUser);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Sorry, log out failed :(");
+                    Logger.Log($"Failed to log out: ", ex);
+                    return false;
+                }
+            });
+            LoaderManager.Instance.HideLoader();
+            if (result)
+            {
+                NavigationManager.Instance.Navigate(ModesEnum.SignIn);
+            }
         }
 
+        private void CloseExecute(object obj)
+        {
+            StationManager.CloseApp();
+        }
+      
         private void PastQueriesExecute(object obj)
         {
             NavigationManager.Instance.Navigate(ModesEnum.Archive);

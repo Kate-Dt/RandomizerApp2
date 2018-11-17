@@ -17,6 +17,7 @@ namespace Randomizer
             NavigationManager.Instance.Initialize(navigationModel);
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
             mainWindowViewModel.StartApplication();
+            DataContext = mainWindowViewModel;
             //navigationModel.Navigate(ModesEnum.SignIn);
         }
 

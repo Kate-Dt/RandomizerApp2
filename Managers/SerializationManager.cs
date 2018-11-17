@@ -5,9 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Randomizer.Managers
 {
-    internal static class SerializationManager
+    public static class SerializationManager
     {
-        internal static void Serialize<TObject>(TObject obj, string filePath)
+        public static void Serialize<TObject>(TObject obj, string filePath)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace Randomizer.Managers
             }
         }
 
-        internal static TObject Deserialize<TObject>(string filePath) where TObject : class
+        public static TObject Deserialize<TObject>(string filePath) where TObject : class
         {
             try
             {

@@ -8,7 +8,6 @@ using System.Windows.Input;
 
 namespace Randomizer.ViewModels
 {
-
     internal class SignInViewModel : BaseViewModel
         {
         
@@ -101,6 +100,7 @@ namespace Randomizer.ViewModels
                         return false;
                     }
                     StationManager.CurrentUser = currentUser;
+                    SerializationManager.Serialize(StationManager.CurrentUser, FileFolderHelper.LastUserFilePath);
                     return true;
                 });
                 LoaderManager.Instance.HideLoader();

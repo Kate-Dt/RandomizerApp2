@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.Entity.ModelConfiguration;
 using System.Collections.Generic;
+using KMA.APZRPMJ2018.WalletSimulator.Tools;
 
 namespace Randomizer.Models
 {
@@ -111,7 +113,7 @@ namespace Randomizer.Models
         }
         #endregion
 
-        public User(string firstName, string lastName, string email, string login, string password) 
+        public User(string firstName, string lastName, string email, string login, string password)
         {
             _guid = Guid.NewGuid();
             _firstName = firstName;
@@ -119,24 +121,25 @@ namespace Randomizer.Models
             _email = email;
             _login = login;
             _lastLoginDate = DateTime.Now;
-            _password = password;
+
+            SetPassword(password);
         }
 
-       private User()
-      {
-        _queries = new List<Query>();
-      }
+        private User()
+        {
+            _queries = new List<Query>();
+        }
 
         private void SetPassword(string password)
         {
-            _password = password;
+            _password = Encrypting.GetMd5HashForString(password);
         }
 
         public bool CheckPassword(string password)
         {
             try
             {
-                string res2 = "password";
+                string res2 = Encrypting.GetMd5HashForString(password);
                 return _password == res2;
             }
             catch (Exception ex)
@@ -161,5 +164,46 @@ namespace Randomizer.Models
         {
             return $"{LastName} {FirstName}";
         }
+
+        #region EntityConfiguration
+
+        public class UserEntityConfiguration : EntityTypeConfiguration<User>
+        {
+            public UserEntityConfiguration()
+            {
+                ToTable("Users");
+                HasKey(s => s.Guid);
+
+                Property(p => p.Guid)
+                    .HasColumnName("Guid")
+                    .IsRequired();
+                Property(p => p.FirstName)
+                    .HasColumnName("FirstName")
+                    .IsRequired();
+                Property(p => p.LastName)
+                    .HasColumnName("LastName")
+                    .IsRequired();
+                Property(p => p.Email)
+                    .HasColumnName("Email")
+                    .IsOptional();
+                Property(p => p.Login)
+                    .HasColumnName("Login")
+                    .IsRequired();
+                Property(p => p.Password)
+                    .HasColumnName("Password")
+                    .IsRequired();
+                Property(p => p.LastLoginDate)
+                    .HasColumnName("LastLoginDate")
+                    .IsRequired();
+
+                HasMany(s => s.Queries)
+                    .WithRequired(w => w.User)
+                    .HasForeignKey(w => w.UserGuid)
+                    .WillCascadeOnDelete(true);
+            }
+
+            #endregion
+        }
+
     }
 }

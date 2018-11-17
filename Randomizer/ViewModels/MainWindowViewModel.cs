@@ -38,6 +38,5 @@ namespace Randomizer.ViewModels
         {
             NavigationManager.Instance.Navigate(StationManager.CurrentUser != null ? ModesEnum.Randomizer : ModesEnum.SignIn);
         }
-
     }
 }

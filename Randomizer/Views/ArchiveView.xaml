@@ -4,17 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Randomizer.Views"
+         Height="220" MinHeight="200" MaxHeight="220" MinWidth="200" Width="300" MaxWidth="500"
         mc:Ignorable="d">
+   
     <Grid>
        
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
+            <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <ListBox Width="Auto" Grid.ColumnSpan="2" 
+             ItemsSource="{Binding Queries}"/>
+            </StackPanel>
+        </ScrollViewer>
+
+
         <TextBlock Grid.Row="0"></TextBlock>
 
-        <Button  Grid.Row="1"  Margin="5" Content="Back to randomizer" Command="{Binding BackToRandomizerCommand}"/>
+        <Button  Grid.Row="3"  Grid.Column ="0" Margin="5" Content="Randomizer" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding BackToRandomizerCommand}"/>
+        <Button  Grid.Row="3" Grid.Column="1" Margin="5" Content="Log out" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding LogOutCommand}"/>
 
     </Grid>
 </UserControl>

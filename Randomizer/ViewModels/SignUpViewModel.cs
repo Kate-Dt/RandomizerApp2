@@ -116,7 +116,6 @@ namespace Randomizer.ViewModels
             {
                 try
                 {
-                    Thread.Sleep(3000);
                     if (!new EmailAddressAttribute().IsValid(_email))
                     {
                         MessageBox.Show("Email not valid");
