@@ -59,7 +59,7 @@ namespace Randomizer.Models
             _guid = Guid.NewGuid();
             _fromNumber = fromNumber;
             _toNumber = toNumber;
-            _generatedElementsNumber = fromNumber - toNumber + 1;
+            _generatedElementsNumber = fromNumber - toNumber + 3;
             _queryDate = DateTime.Now;
             _userGuid = user.Guid;
             _user = user;
@@ -72,8 +72,8 @@ namespace Randomizer.Models
 
         public override string ToString()
         {
-            return $"From: {FromNumber}  To: {ToNumber} Elements in sequence: {GeneratedElementsNumber}" +
-                $"Date: {QueryDate}";
+            return $"From: {FromNumber}  To: {ToNumber} Elements: {GeneratedElementsNumber}" +
+                $" Date: {QueryDate}";
         }
 
         #region EntityFrameworkConfiguration

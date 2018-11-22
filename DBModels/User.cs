@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity.ModelConfiguration;
 using System.Collections.Generic;
-using KMA.APZRPMJ2018.WalletSimulator.Tools;
+using Randomizer.Tools;
 
 namespace Randomizer.Models
 {
@@ -121,6 +121,7 @@ namespace Randomizer.Models
             _email = email;
             _login = login;
             _lastLoginDate = DateTime.Now;
+            _queries = new List<Query>();
 
             SetPassword(password);
         }
@@ -201,9 +202,7 @@ namespace Randomizer.Models
                     .HasForeignKey(w => w.UserGuid)
                     .WillCascadeOnDelete(true);
             }
-
             #endregion
         }
-
     }
 }

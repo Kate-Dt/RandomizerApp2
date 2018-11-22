@@ -2,7 +2,6 @@
 using Randomizer.Tools;
 using System;
 using System.IO;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace Randomizer.Managers
@@ -42,7 +41,6 @@ namespace Randomizer.Managers
 
         public  static void CloseApp()
         {
-            MessageBox.Show("ShutDown");
             Environment.Exit(1);
         }
     }

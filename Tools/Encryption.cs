@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace KMA.APZRPMJ2018.WalletSimulator.Tools
+namespace Randomizer.Tools
 {
     public static class Encrypting
     {

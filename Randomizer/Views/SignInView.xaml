@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Randomizer.Tools.Controls"
         mc:Ignorable="d"
-        Height="220" MinHeight="200" MaxHeight="220" MinWidth="200" Width="300" MaxWidth="500"
+        Height="220" MinHeight="200" MaxHeight="220" MinWidth="200" Width="300" MaxWidth="300"
         x:ClassModifier="internal">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>

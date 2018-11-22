@@ -1,11 +1,9 @@
-﻿using JetBrains.Annotations;
-using Randomizer.Managers;
+﻿using Randomizer.Managers;
 using Randomizer.Models;
 using Randomizer.Tools;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -20,7 +18,6 @@ namespace Randomizer.ViewModels
         #region Commands
 
         private ICommand _backToRandomizerCommand;
-        private ICommand _logOutCommand;
 
         #endregion
         #endregion
@@ -28,6 +25,7 @@ namespace Randomizer.ViewModels
         public ObservableCollection<Query> Queries
         {
             get { return _pastQueriesCollection; }
+            set { _pastQueriesCollection = value; }
         }
 
         public ICommand BackToRandomizerCommand
@@ -37,62 +35,29 @@ namespace Randomizer.ViewModels
                 return _backToRandomizerCommand ?? (_backToRandomizerCommand = new RelayCommand<object>(BackToRandomizerExecute));
             }
         }
-
-        public ICommand LogOutCommand
-        {
-            get
-            {
-                return _logOutCommand ?? (_logOutCommand = new RelayCommand<object>(LogOutExecute));
-            }
-        }
-
+        
         private void BackToRandomizerExecute(object obj)
         {
             NavigationManager.Instance.Navigate(ModesEnum.Randomizer);
         }
-
-        private async void LogOutExecute(object obj)
-        {
-                LoaderManager.Instance.ShowLoader();
-                var result = await Task.Run(() =>
-                {
-                    try
-                    {                        
-                        DBManager.SerializeCurrent(StationManager.CurrentUser);
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Sorry, log out failed :(");
-                        Logger.Log($"Failed to log out: ", ex);
-                        return false;
-                        }
-                });
-                LoaderManager.Instance.HideLoader();
-                if (result)
-                {
-                    NavigationManager.Instance.Navigate(ModesEnum.SignIn); 
-            }
-        }
-
+        
         public ArchiveViewModel()
         {
-            FillQueries();
-        }
+            _pastQueriesCollection = new ObservableCollection<Query>();
+            Update();
+         }
 
-        public void FillQueries()
+        internal new void Update()
         {
             if (StationManager.CurrentUser.Queries == null)
             {
                 return;
             }
-            _pastQueriesCollection = new ObservableCollection<Query>();
+            _pastQueriesCollection.Clear();
             foreach (var query in StationManager.CurrentUser.Queries)
             {
                 _pastQueriesCollection.Add(query);
-                //OnPropertyChanged("Queries");
             }
-        }
-        
+        }        
     }
 }

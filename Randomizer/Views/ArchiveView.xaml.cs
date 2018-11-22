@@ -7,10 +7,10 @@ namespace Randomizer.Views
     /// </summary>
     public partial class ArchiveView
     {
-        public ArchiveView()
+        public ArchiveView(BaseViewModel viewModel)
         {
             InitializeComponent();
-            var archiveViewModel = new ArchiveViewModel();
+            var archiveViewModel = viewModel ?? new ArchiveViewModel();
             DataContext = archiveViewModel;
         }
     }

@@ -4,6 +4,7 @@ using Randomizer.Models;
 using Randomizer.Tools;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -17,6 +18,7 @@ namespace Randomizer.ViewModels
         private string _fromNumber;
         private string _toNumber;
         private string _result;
+        private ArchiveViewModel _archiveViewModel;
         private ObservableCollection<int> _randomSequenceCollection;
 
         #region Commands
@@ -108,6 +110,7 @@ namespace Randomizer.ViewModels
         public RandomizerViewModel()
         {
             _result = "";
+            _archiveViewModel = new ArchiveViewModel();
         }
         
         private async void GenerateSequenceExecute(object obj)
@@ -164,7 +167,9 @@ namespace Randomizer.ViewModels
             {
                 try
                 {
-                    DBManager.SerializeCurrent(StationManager.CurrentUser);
+                    StationManager.CurrentUser = null;
+                    FileInfo file = new FileInfo(FileFolderHelper.LastUserFilePath);
+                    file.Delete();
                     return true;
                 }
                 catch (Exception ex)
@@ -177,6 +182,7 @@ namespace Randomizer.ViewModels
             LoaderManager.Instance.HideLoader();
             if (result)
             {
+                NavigationManager.Instance.NullifyViewModels();
                 NavigationManager.Instance.Navigate(ModesEnum.SignIn);
             }
         }
@@ -188,7 +194,8 @@ namespace Randomizer.ViewModels
       
         private void PastQueriesExecute(object obj)
         {
-            NavigationManager.Instance.Navigate(ModesEnum.Archive);
+            _archiveViewModel.Update();
+            NavigationManager.Instance.Navigate(ModesEnum.Archive, _archiveViewModel);
         }
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using Randomizer.Views;
+﻿using Randomizer.ViewModels;
+using Randomizer.Views;
 using System;
 
 namespace Randomizer.Tools
@@ -25,7 +26,7 @@ namespace Randomizer.Tools
             _contentWindow = contentWindow;
         }
 
-        internal void Navigate(ModesEnum mode)
+        internal void Navigate(ModesEnum mode, BaseViewModel viewModel)
         {
             switch (mode)
             {
@@ -39,11 +40,19 @@ namespace Randomizer.Tools
                 _contentWindow.ContentControl.Content = _signUpView ?? (_signUpView = new SignUpView());
                 break;
                 case ModesEnum.Archive:
-                    _contentWindow.ContentControl.Content = _archiveView ?? (_archiveView = new ArchiveView());
+                    _contentWindow.ContentControl.Content = _archiveView ?? (_archiveView = new ArchiveView(viewModel));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
             }
         }
-      }
+
+        internal void NullifyViewModels()
+        {
+            _randomizerView = null;
+            _signInView = null;
+            _signUpView = null;
+            _archiveView = null;
+        }
+    }
 }

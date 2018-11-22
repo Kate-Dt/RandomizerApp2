@@ -3,7 +3,6 @@ using Randomizer.Models;
 using Randomizer.Tools;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;

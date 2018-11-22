@@ -1,4 +1,6 @@
-﻿using Randomizer.Tools;
+﻿using System;
+using Randomizer.Tools;
+using Randomizer.ViewModels;
 
 namespace Randomizer.Managers
 {
@@ -48,10 +50,15 @@ namespace Randomizer.Managers
         /// This method performs switch betwean different controls
         /// </summary>
         /// <param name="mode">Enum value of corresponding control</param>
-        internal void Navigate(ModesEnum mode)
+        internal void Navigate(ModesEnum mode, BaseViewModel model=null)
         {
             //If _navigationModel is null, nothing will happen
-            _navigationModel?.Navigate(mode);
+            _navigationModel?.Navigate(mode, model);
+        }
+
+        internal void NullifyViewModels()
+        {
+            _navigationModel.NullifyViewModels();
         }
     }
 }

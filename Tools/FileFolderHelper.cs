@@ -23,7 +23,7 @@ namespace Randomizer.Tools
         public static readonly string LastUserFilePath =
             Path.Combine(ClientFolderPath, "LastUser.random");
 
-        public  static void CheckAndCreateFile(string filePath)
+        public static void CheckAndCreateFile(string filePath)
         {
             try
             {
