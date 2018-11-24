@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Windows.Forms;
 
 namespace Randomizer.Managers
 {
@@ -20,6 +21,7 @@ namespace Randomizer.Managers
             }
             catch (Exception ex)
             {
+                MessageBox.Show("SerializationFail" + ex.ToString());
                 Logger.Log($"Failed to serialize data to file {filePath}", ex);
                 throw;
             }

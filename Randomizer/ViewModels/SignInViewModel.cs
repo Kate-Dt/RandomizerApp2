@@ -78,7 +78,7 @@ namespace Randomizer.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Failed to get user");
+                        MessageBox.Show("Failed to get user"+ex.ToString());
                         return false;
                     }
                     if (currentUser == null)

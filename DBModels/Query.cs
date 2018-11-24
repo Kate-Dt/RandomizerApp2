@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace Randomizer.Models
 {
+    [Serializable]
     [DataContract(IsReference = true)]
     public class Query
     {
