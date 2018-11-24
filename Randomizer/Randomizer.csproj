@@ -171,9 +171,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DBAdapter\DBAdapter.csproj">
       <Project>{D41D9B44-838F-4DAF-AE8D-FD17DFB877C8}</Project>
@@ -186,6 +184,10 @@
     <ProjectReference Include="..\Managers\Managers.csproj">
       <Project>{6AD679C2-5CCE-4FA5-A0DE-239587B48ED5}</Project>
       <Name>Managers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RandomizerService\RandomizerService.csproj">
+      <Project>{1A834BD9-3182-4B3B-8A42-DC8BBBD6443B}</Project>
+      <Name>RandomizerService</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tools\Tools.csproj">
       <Project>{6C3024F3-9DC2-4FA6-9A53-896A0B9AE6BC}</Project>

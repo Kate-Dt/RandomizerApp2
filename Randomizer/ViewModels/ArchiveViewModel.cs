@@ -1,11 +1,7 @@
 ﻿using Randomizer.Managers;
 using Randomizer.Models;
 using Randomizer.Tools;
-using System;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace Randomizer.ViewModels
@@ -47,7 +43,7 @@ namespace Randomizer.ViewModels
             Update();
          }
 
-        internal new void Update()
+        internal void Update()
         {
             if (StationManager.CurrentUser.Queries == null)
             {

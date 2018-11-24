@@ -1,5 +1,4 @@
-﻿using Randomizer.DBAdapter;
-using Randomizer.Managers;
+﻿using Randomizer.Managers;
 using Randomizer.Models;
 using Randomizer.Tools;
 using System;
@@ -149,7 +148,7 @@ namespace Randomizer.ViewModels
                         OnPropertyChanged("Result");
                         Query currentQuery = new Models.Query(from, to, StationManager.CurrentUser);
                         //add to db
-                        EntityWrapper.AddQuery(currentQuery);
+                        DBManager.AddQuery(currentQuery);
                     }
                 }
                 else

@@ -2,20 +2,30 @@
 using System.Data.Entity.ModelConfiguration;
 using System.Collections.Generic;
 using Randomizer.Tools;
+using System.Runtime.Serialization;
 
 namespace Randomizer.Models
 {
     [Serializable]
+    [DataContract(IsReference = true)]
     public class User
     {
         #region Fields
+        [DataMember]
         private Guid _guid;
+        [DataMember]
         private string _firstName;
+        [DataMember]
         private string _lastName;
+        [DataMember]
         private string _email;
+        [DataMember]
         private string _login;
+        [DataMember]
         private string _password;
+        [DataMember]
         private DateTime _lastLoginDate;
+        [DataMember]
         private List<Query> _queries;
         #endregion 
 

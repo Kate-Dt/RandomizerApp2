@@ -129,6 +129,7 @@ namespace Randomizer.ViewModels
                 catch (Exception ex)
                 {
                     MessageBox.Show("Failed to validate data");
+                    Logger.Log(ex.ToString());
                     return false;
                 }
                 try
@@ -140,6 +141,7 @@ namespace Randomizer.ViewModels
                 catch (Exception ex)
                 {
                     MessageBox.Show("Failed to create user");
+                    Logger.Log(ex.ToString());
                     return false;
                 }
                 MessageBox.Show("User successfully created");

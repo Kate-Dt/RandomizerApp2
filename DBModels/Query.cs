@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Data.Entity.ModelConfiguration;
+using System.Runtime.Serialization;
 
 namespace Randomizer.Models
 {
-    [Serializable]
+    [DataContract(IsReference = true)]
     public class Query
     {
         #region Fields
+        [DataMember]
         private Guid _guid;
+        [DataMember]
         private int _fromNumber;
+        [DataMember]
         private int _toNumber;
+        [DataMember]
         private int _generatedElementsNumber;
+        [DataMember]
         private DateTime _queryDate;
+        [DataMember]
         private Guid _userGuid;
+        [DataMember]
         private User _user;
         #endregion
 
@@ -59,7 +67,7 @@ namespace Randomizer.Models
             _guid = Guid.NewGuid();
             _fromNumber = fromNumber;
             _toNumber = toNumber;
-            _generatedElementsNumber = fromNumber - toNumber + 3;
+            _generatedElementsNumber = toNumber - FromNumber + 1;
             _queryDate = DateTime.Now;
             _userGuid = user.Guid;
             _user = user;

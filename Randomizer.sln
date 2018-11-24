@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Randomizer", "Randomizer\Randomizer.csproj", "{A85EF0DD-89D2-4D90-9B14-3CBE2238A5C9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6AD679C2-5CCE-4FA5-A0DE-239587B48ED5} = {6AD679C2-5CCE-4FA5-A0DE-239587B48ED5}
+		{1A834BD9-3182-4B3B-8A42-DC8BBBD6443B} = {1A834BD9-3182-4B3B-8A42-DC8BBBD6443B}
 		{6C3024F3-9DC2-4FA6-9A53-896A0B9AE6BC} = {6C3024F3-9DC2-4FA6-9A53-896A0B9AE6BC}
 	EndProjectSection
 EndProject
@@ -13,12 +14,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBAdapter", "DBAdapter\DBAd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Managers", "Managers\Managers.csproj", "{6AD679C2-5CCE-4FA5-A0DE-239587B48ED5}"
 	ProjectSection(ProjectDependencies) = postProject
+		{4C9DF1C7-5B29-4B2B-B80D-C9FCC4426E3E} = {4C9DF1C7-5B29-4B2B-B80D-C9FCC4426E3E}
 		{6C3024F3-9DC2-4FA6-9A53-896A0B9AE6BC} = {6C3024F3-9DC2-4FA6-9A53-896A0B9AE6BC}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools", "Tools\Tools.csproj", "{6C3024F3-9DC2-4FA6-9A53-896A0B9AE6BC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBModels", "DBModels\DBModels.csproj", "{72411527-0011-418C-84CD-A8D71F30B73D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomizerServiceInterface", "RandomizerServiceInterface\RandomizerServiceInterface.csproj", "{4C9DF1C7-5B29-4B2B-B80D-C9FCC4426E3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomizerService", "RandomizerService\RandomizerService.csproj", "{1A834BD9-3182-4B3B-8A42-DC8BBBD6443B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +52,14 @@ Global
 		{72411527-0011-418C-84CD-A8D71F30B73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72411527-0011-418C-84CD-A8D71F30B73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72411527-0011-418C-84CD-A8D71F30B73D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C9DF1C7-5B29-4B2B-B80D-C9FCC4426E3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C9DF1C7-5B29-4B2B-B80D-C9FCC4426E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C9DF1C7-5B29-4B2B-B80D-C9FCC4426E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C9DF1C7-5B29-4B2B-B80D-C9FCC4426E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A834BD9-3182-4B3B-8A42-DC8BBBD6443B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A834BD9-3182-4B3B-8A42-DC8BBBD6443B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A834BD9-3182-4B3B-8A42-DC8BBBD6443B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A834BD9-3182-4B3B-8A42-DC8BBBD6443B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

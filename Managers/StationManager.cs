@@ -2,7 +2,6 @@
 using Randomizer.Tools;
 using System;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Randomizer.Managers
 {
