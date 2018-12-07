@@ -78,7 +78,7 @@ namespace Randomizer.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Failed to get user"+ex.ToString());
+                        MessageBox.Show("Failed to get user" + ex.ToString());
                         return false;
                     }
                     if (currentUser == null)
@@ -97,6 +97,7 @@ namespace Randomizer.ViewModels
                     catch (Exception ex)
                     {
                         MessageBox.Show("Invalid password");
+                        Logger.Log($"User failed to enter valid password {ex}", ex);
                         return false;
                     }
                     StationManager.CurrentUser = currentUser;

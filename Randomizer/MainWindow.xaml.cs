@@ -18,7 +18,6 @@ namespace Randomizer
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
             mainWindowViewModel.StartApplication();
             DataContext = mainWindowViewModel;
-            //navigationModel.Navigate(ModesEnum.SignIn);
         }
 
         public ContentControl ContentControl
@@ -26,5 +25,4 @@ namespace Randomizer
             get { return _contentControl; }
         }
     }
-
 }

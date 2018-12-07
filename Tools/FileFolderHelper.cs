@@ -14,8 +14,8 @@ namespace Randomizer.Tools
         internal static readonly string LogFolderPath =
             Path.Combine(ClientFolderPath, "Log");
 
-        internal static readonly string LogFilepath = Path.Combine(LogFolderPath,
-            "App_" + DateTime.Now.ToString("YYYY_MM_DD") + ".txt");
+        internal static readonly string LogFilepath = 
+            Path.Combine(LogFolderPath, "App_" + DateTime.Now.ToString("YYYY_MM_DD") + ".txt");
 
         public static readonly string StorageFilePath =
             Path.Combine(ClientFolderPath, "Storage.random");

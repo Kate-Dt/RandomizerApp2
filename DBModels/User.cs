@@ -1,7 +1,7 @@
-﻿using System;
-using System.Data.Entity.ModelConfiguration;
+﻿using Randomizer.Tools;
+using System;
 using System.Collections.Generic;
-using Randomizer.Tools;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace Randomizer.Models
@@ -78,13 +78,13 @@ namespace Randomizer.Models
 
         public string Login
         {
-            get
-            {
-                return _login;
-            }
             private set
             {
                 _login = value;
+            }
+            get
+            {
+                return _login;
             }
         }
         private string Password
@@ -112,13 +112,13 @@ namespace Randomizer.Models
 
         public List<Query> Queries
         {
-            get
-            {
-                return _queries;
-            }
             private set
             {
                 _queries = value;
+            }
+            get
+            {
+                return _queries;
             }
         }
         #endregion
@@ -140,7 +140,7 @@ namespace Randomizer.Models
         {
             _queries = new List<Query>();
         }
-
+        
         private void SetPassword(string password)
         {
             _password = Encrypting.GetMd5HashForString(password);
@@ -155,6 +155,7 @@ namespace Randomizer.Models
             }
             catch (Exception ex)
             {
+                Logger.Log($"Failed to check password {ex}", ex);
                 return false;
             }
         }
@@ -165,8 +166,9 @@ namespace Randomizer.Models
             {
                 return _password == userCandidate._password;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Log($"Failed to check password {ex}", ex);
                 return false;
             }
         }

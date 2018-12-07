@@ -1,6 +1,5 @@
 ﻿namespace Randomizer.DBAdapter.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
 
     public partial class InitialMigration : DbMigration
@@ -20,8 +19,7 @@
                     LastLoginDate = c.DateTime(nullable: false),
                 })
                 .PrimaryKey(t => t.Guid);
-
-
+            
             CreateTable(
                     "dbo.Query",
                     c => new
@@ -36,7 +34,6 @@
                 .PrimaryKey(t => t.Guid)
                 .ForeignKey("dbo.Users", t => t.UserGuid, cascadeDelete: true)
                 .Index(t => t.UserGuid);
-
         }
 
         public override void Down()

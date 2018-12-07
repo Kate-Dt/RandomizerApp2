@@ -24,7 +24,9 @@ namespace Randomizer.Managers
         {
             var userInStorage = QueryServiceWrapper.GetUserByGuid(userCandidate.Guid);
             if (userInStorage != null && userInStorage.CheckPassword(userCandidate))
+            {
                 return userInStorage;
+            }
             return null;
         }
 
@@ -39,4 +41,3 @@ namespace Randomizer.Managers
         }
     }
 }
-

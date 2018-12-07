@@ -25,6 +25,22 @@ namespace Randomizer.Models
         private User _user;
         #endregion
 
+        public Query(int fromNumber, int toNumber, User user) : this()
+        {
+            _guid = Guid.NewGuid();
+            _fromNumber = fromNumber;
+            _toNumber = toNumber;
+            _generatedElementsNumber = toNumber - FromNumber + 1;
+            _queryDate = DateTime.Now;
+            _userGuid = user.Guid;
+            _user = user;
+            user.Queries.Add(this);
+        }
+
+        private Query()
+        {
+        }
+
         #region Properties
         public Guid Guid
         {
@@ -63,26 +79,10 @@ namespace Randomizer.Models
         }
         #endregion
 
-        public Query(int fromNumber, int toNumber, User user) : this()
-        {
-            _guid = Guid.NewGuid();
-            _fromNumber = fromNumber;
-            _toNumber = toNumber;
-            _generatedElementsNumber = toNumber - FromNumber + 1;
-            _queryDate = DateTime.Now;
-            _userGuid = user.Guid;
-            _user = user;
-            user.Queries.Add(this);
-        }
-
-        private Query()
-        {
-        }
-
         public override string ToString()
         {
-            return $"From: {FromNumber}  To: {ToNumber} Elements: {GeneratedElementsNumber}" +
-                $" Date: {QueryDate}";
+            return $"From: {FromNumber} | To: {ToNumber} | Elements: {GeneratedElementsNumber}" +
+                $" | Date: {QueryDate}";
         }
 
         #region EntityFrameworkConfiguration

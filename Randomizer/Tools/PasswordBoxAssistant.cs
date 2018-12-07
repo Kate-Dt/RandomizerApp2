@@ -42,7 +42,6 @@ namespace Randomizer.Tools
         {
             // when the BindPassword attached property is set on a PasswordBox,
             // start listening to its PasswordChanged event
-
             PasswordBox box = dp as PasswordBox;
 
             if (box == null)

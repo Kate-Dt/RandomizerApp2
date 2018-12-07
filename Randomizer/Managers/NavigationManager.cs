@@ -1,5 +1,4 @@
-﻿using System;
-using Randomizer.Tools;
+﻿using Randomizer.Tools;
 using Randomizer.ViewModels;
 
 namespace Randomizer.Managers
@@ -12,12 +11,12 @@ namespace Randomizer.Managers
         /// </summary>
         private static readonly object Lock = new object();
         /// <summary>
-        /// Singelton Object of a manager
+        /// Singleton Object of a manager
         /// </summary>
         private static NavigationManager _instance;
 
         /// <summary>
-        /// Singelton Object of a manager
+        /// Singleton Object of a manager
         /// </summary>
         public static NavigationManager Instance
         {
@@ -39,7 +38,7 @@ namespace Randomizer.Managers
 
         private NavigationModel _navigationModel;
         /// <summary>
-        /// This methos is used to switch to another navigation model
+        /// This method is used to switch to another navigation model
         /// </summary>
         /// <param name="navigationModel">New NavigationModel</param>
         internal void Initialize(NavigationModel navigationModel)
@@ -47,10 +46,10 @@ namespace Randomizer.Managers
             _navigationModel = navigationModel;
         }
         /// <summary>
-        /// This method performs switch betwean different controls
+        /// This method performs switch between different controls
         /// </summary>
         /// <param name="mode">Enum value of corresponding control</param>
-        internal void Navigate(ModesEnum mode, BaseViewModel model=null)
+        internal void Navigate(ModesEnum mode, BaseViewModel model = null)
         {
             //If _navigationModel is null, nothing will happen
             _navigationModel?.Navigate(mode, model);

@@ -104,11 +104,10 @@ namespace Randomizer.ViewModels
                 return _closeCommand ?? (_closeCommand = new RelayCommand<object>(CloseExecute));
             }
         }
-
-
+        
         public RandomizerViewModel()
         {
-            _result = "";
+            _result = string.Empty;
             _archiveViewModel = new ArchiveViewModel();
         }
         
@@ -127,7 +126,7 @@ namespace Randomizer.ViewModels
                     }
                     else
                     {
-                        _result = "";
+                        _result = string.Empty;
                         int randomNumber;
                         int totalQuantity = to - from + 1;
                         _randomSequenceCollection = new ObservableCollection<int>();
@@ -147,7 +146,6 @@ namespace Randomizer.ViewModels
                         }
                         OnPropertyChanged("Result");
                         Query currentQuery = new Models.Query(from, to, StationManager.CurrentUser);
-                        //add to db
                         DBManager.AddQuery(currentQuery);
                     }
                 }

@@ -33,9 +33,13 @@ namespace Randomizer.Managers
             }
             userCandidate = DBManager.CheckCachedUser(userCandidate);
             if (userCandidate == null)
+            {
                 Logger.Log("Failed to relogin last user");
+            }
             else
+            {
                 CurrentUser = userCandidate;
+            }
         }
 
         public  static void CloseApp()

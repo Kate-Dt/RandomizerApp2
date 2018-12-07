@@ -9,20 +9,26 @@ namespace Randomizer.RandomizerService
     {
         private void InitializeComponent()
         {
-            _serviceProcessInstaller = new ServiceProcessInstaller();
-            _serviceInstaller = new ServiceInstaller();
-            _serviceProcessInstaller.Account = ServiceAccount.LocalSystem;
-            _serviceProcessInstaller.Password = null;
-            _serviceProcessInstaller.Username = null;
-            _serviceInstaller.ServiceName = RandomizerWindowsService.CurrentServiceName;
-            _serviceInstaller.DisplayName = RandomizerWindowsService.CurrentServiceDisplayName;
-            _serviceInstaller.Description = RandomizerWindowsService.CurrentServiceDescription;
-            _serviceInstaller.StartType = ServiceStartMode.Automatic;
-            Installers.AddRange(new Installer[]
-            {
-                _serviceProcessInstaller,
-                _serviceInstaller
-            });
+            this._serviceProcessInstaller = new System.ServiceProcess.ServiceProcessInstaller();
+            this._serviceInstaller = new System.ServiceProcess.ServiceInstaller();
+            // 
+            // _serviceProcessInstaller
+            // 
+            this._serviceProcessInstaller.Account = System.ServiceProcess.ServiceAccount.LocalSystem;
+            this._serviceProcessInstaller.Password = null;
+            this._serviceProcessInstaller.Username = null;
+            this._serviceProcessInstaller.AfterInstall += new System.Configuration.Install.InstallEventHandler(this._serviceProcessInstaller_AfterInstall);
+            // 
+            // _serviceInstaller
+            // 
+            this._serviceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+            // 
+            // ProjectInstaller
+            // 
+            this.Installers.AddRange(new System.Configuration.Install.Installer[] {
+            this._serviceProcessInstaller,
+            this._serviceInstaller});
+
         }
 
         public ProjectInstaller()
@@ -32,5 +38,9 @@ namespace Randomizer.RandomizerService
 
         private ServiceProcessInstaller _serviceProcessInstaller;
         private ServiceInstaller _serviceInstaller;
+
+        private void _serviceProcessInstaller_AfterInstall(object sender, InstallEventArgs e)
+        {
+        }
     }
 }

@@ -9,10 +9,9 @@ namespace Randomizer.ViewModels
     class ArchiveViewModel : BaseViewModel
     {
         #region  Fields
-        public static ObservableCollection<Query> _pastQueriesCollection;
+        public static ObservableCollection<Query> PastQueriesCollection;
 
         #region Commands
-
         private ICommand _backToRandomizerCommand;
 
         #endregion
@@ -20,8 +19,8 @@ namespace Randomizer.ViewModels
 
         public ObservableCollection<Query> Queries
         {
-            get { return _pastQueriesCollection; }
-            set { _pastQueriesCollection = value; }
+            get { return PastQueriesCollection; }
+            set { PastQueriesCollection = value; }
         }
 
         public ICommand BackToRandomizerCommand
@@ -39,7 +38,7 @@ namespace Randomizer.ViewModels
         
         public ArchiveViewModel()
         {
-            _pastQueriesCollection = new ObservableCollection<Query>();
+            PastQueriesCollection = new ObservableCollection<Query>();
             Update();
          }
 
@@ -49,10 +48,10 @@ namespace Randomizer.ViewModels
             {
                 return;
             }
-            _pastQueriesCollection.Clear();
+            PastQueriesCollection.Clear();
             foreach (var query in StationManager.CurrentUser.Queries)
             {
-                _pastQueriesCollection.Add(query);
+                PastQueriesCollection.Add(query);
             }
         }        
     }
