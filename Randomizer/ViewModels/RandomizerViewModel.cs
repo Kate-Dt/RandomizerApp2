@@ -151,7 +151,7 @@ namespace Randomizer.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Error parsing");
+                    MessageBox.Show("Please enter correct numbers");
                 }
             });
             LoaderManager.Instance.HideLoader();

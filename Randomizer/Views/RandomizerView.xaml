@@ -3,40 +3,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             Height="400" MinHeight="420" MaxHeight="420" MinWidth="200" Width="300" MaxWidth="500"
+             Height="400" MaxHeight="420" Width="400" MaxWidth="500" 
         mc:Ignorable="d">
 
     <Grid>
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="1.5*"/>
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="20"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
-				<RowDefinition Height="*"/>
-			    <RowDefinition Height="40"/>
-			</Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Text="From" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="0" Grid.Row="1"   HorizontalAlignment="Center" VerticalAlignment="Center" Width ="80" Text="{Binding FromNumber,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <TextBlock Grid.Column="0" Text="From" Foreground="White" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="0" Grid.Row="1"   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Height="35" Width ="122" FontSize="18" TextAlignment="Center" Text="{Binding FromNumber,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+            <TextBlock Grid.Column="1" Text="To" Foreground="White" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Grid.Row="1"   HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Height="35" Width ="122" FontSize="18" TextAlignment="Center" Text="{Binding ToNumber,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
-            <TextBlock Grid.Column="1" Text="To" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Grid.Row="1"   HorizontalAlignment="Center" VerticalAlignment="Center" Width ="80" Text="{Binding ToNumber,  UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-
-            <Button Grid.Column="2" Grid.Row="1"   Content="Generate sequence" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="22" Command="{Binding GenerateSequenceCommand}"/>
-
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
-            <TextBlock Text="{Binding Result, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }"  Margin="2"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2">
+                <TextBlock Text="{Binding Result, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" 
+                           Foreground="Black" FontSize="20" Margin="2" TextAlignment="Center"/>
             </ScrollViewer>
-            <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Content="Past queries" Command="{Binding PastQueriesCommand}"/>
-            <Button Grid.Column="0"  Grid.Row="3" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Content="Log Out" Command="{Binding LogOutCommand}"/>
-            <Button Grid.Column="1"  Grid.Row="3" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Content="Close" Command="{Binding CloseCommand}"/>
 
+            <Button Grid.Column="2" Grid.Row="1"  Content="Get sequence" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" Width="122" Style="{StaticResource ButStyle}" Command="{Binding GenerateSequenceCommand}"/>
+            <Button Grid.Column="2" Grid.Row="3" Grid.RowSpan="2"  HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" Width="122" Content="Past queries" 
+                    Style="{StaticResource ButStyle}" Command="{Binding PastQueriesCommand}"/>
+            <Button Grid.Column="0"  Grid.Row="3" Grid.RowSpan="2"  HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" Width="122" Content="Log Out" 
+                    Style="{StaticResource ButStyle}" Command="{Binding LogOutCommand}"/>
+            <Button Grid.Column="1"  Grid.Row="3" Grid.RowSpan="2" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" Width="122" Content="Close"
+                    Style="{StaticResource ButStyle}" Command="{Binding CloseCommand}"/>
         </Grid>
-		
-		
     </Grid>
 </UserControl>

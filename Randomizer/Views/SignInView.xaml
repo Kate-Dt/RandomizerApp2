@@ -9,6 +9,7 @@
         x:ClassModifier="internal">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition MinHeight="20"  MaxHeight="30"/>
@@ -19,12 +20,19 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <controls:LabelAndTextControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Caption="Login" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
-        <controls:LabelAndPasswordControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                Caption="Password" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
+        <controls:LabelAndTextControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  
+                                      Caption="Login" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
+        <controls:LabelAndPasswordControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    Caption="Password" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
 
-        <Button Grid.Row="2" Grid.Column="0" Content="Log in" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding SignInCommand}"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Sign up" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding SignUpCommand}" />
-        <Button Grid.Row="2" Grid.Column="2" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"/>
+        <Button Grid.Row="3" Grid.Column="0" Content="Log in" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Width="75" Command="{Binding SignInCommand}"
+                Style="{StaticResource ButStyle}"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Sign up" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Width="75" Command="{Binding SignUpCommand}"
+                Style="{StaticResource ButStyle}"/>
+        <Button Grid.Row="3" Grid.Column="2" Content="Close" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"
+                Style="{StaticResource ButStyle}"/>
     </Grid>
 </UserControl>

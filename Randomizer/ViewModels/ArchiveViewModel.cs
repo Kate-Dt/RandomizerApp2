@@ -2,6 +2,7 @@
 using Randomizer.Models;
 using Randomizer.Tools;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Randomizer.ViewModels
@@ -46,6 +47,7 @@ namespace Randomizer.ViewModels
         {
             if (StationManager.CurrentUser.Queries == null)
             {
+                MessageBox.Show("Archive is empty!");
                 return;
             }
             PastQueriesCollection.Clear();
@@ -53,6 +55,6 @@ namespace Randomizer.ViewModels
             {
                 PastQueriesCollection.Add(query);
             }
-        }        
+        }
     }
 }
